@@ -11,25 +11,25 @@ describe('EditProductComponent tests', () => {
     const props = {
       categories: [
         {
-          id: 1,
+          id: '1',
           name: 'Category I',
         },
         {
-          id: 2,
+          id: '2',
           name: 'Category II',
         },
         {
-          id: 3,
+          id: '3',
           name: 'Category III',
         },
       ],
       product: createEmptyProductVm(),
-      portionTypes: [{ id: 1, name: 'Única' }],
-      portions: [{ id: 1, name: 'Única' }],
+      portionTypes: [{ id: '1', name: 'Única' }],
+      portions: [{ id: '1', name: 'Única' }],
       onSave: (product: Product) => {
         return;
       },
-      onChangeCategory: (categoryId: number) => {
+      onChangeCategory: (categoryId: string) => {
         return;
       },
       onChangeName: (name: string) => {
@@ -38,10 +38,10 @@ describe('EditProductComponent tests', () => {
       onChangeDescription: (description: string) => {
         return;
       },
-      onChangePortionPrice: (id: number, price: number) => {
+      onChangePortionPrice: (id: string, price: number) => {
         return;
       },
-      onChangePortionType: (id: number) => {
+      onChangePortionType: (id: string) => {
         return;
       },
       onCancel: () => {
@@ -73,33 +73,39 @@ describe('EditProductComponent tests', () => {
     const props = {
       categories: [
         {
-          id: 1,
+          id: '1',
           name: 'Category I',
         },
         {
-          id: 2,
+          id: '2',
           name: 'Category II',
         },
         {
-          id: 3,
+          id: '3',
           name: 'Category III',
         },
       ],
       product: {
-        id: 12,
+        id: '12',
         name: 'Test product',
         description: 'New description',
         visible: true,
-        categoryId: 2,
-        portionTypeId: 1,
-        portionPrices: [0, 15],
+        categoryId: '2',
+        portionTypeId: '1',
+        portions: [
+          {
+            id: '1',
+            name: 'Única',
+            price: 10,
+          }
+        ],
       },
-      portionTypes: [{ id: 1, name: 'Única' }],
-      portions: [{ id: 1, name: 'Única' }],
+      portionTypes: [{ id: '1', name: 'Única' }],
+      portions: [{ id: '1', name: 'Única' }],
       onSave: (product: Product) => {
         return;
       },
-      onChangeCategory: (categoryId: number) => {
+      onChangeCategory: (categoryId: string) => {
         return;
       },
       onChangeName: (name: string) => {
@@ -108,10 +114,10 @@ describe('EditProductComponent tests', () => {
       onChangeDescription: (description: string) => {
         return;
       },
-      onChangePortionPrice: (id: number, price: number) => {
+      onChangePortionPrice: (id: string, price: number) => {
         return;
       },
-      onChangePortionType: (id: number) => {
+      onChangePortionType: (id: string) => {
         return;
       },
       onCancel: () => {
@@ -138,7 +144,7 @@ describe('EditProductComponent tests', () => {
     expect(portionType).toBeInTheDocument();
     const price = screen.getByText('Precio - Única');
     expect(price).toBeInTheDocument();
-    const priceField = screen.getByDisplayValue('15');
+    const priceField = screen.getByDisplayValue('10');
     expect(priceField).toBeInTheDocument();
     const buttons = screen.getAllByRole('button');
     expect(buttons.length).toBe(4);
@@ -152,31 +158,42 @@ describe('EditProductComponent tests', () => {
     const props = {
       categories: [
         {
-          id: 1,
+          id: '1',
           name: 'Category I',
         },
         {
-          id: 2,
+          id: '2',
           name: 'Category II',
         },
         {
-          id: 3,
+          id: '3',
           name: 'Category III',
         },
       ],
       product: {
-        id: 12,
+        id: '12',
         name: 'Test product',
         description: 'New description',
         visible: true,
-        categoryId: 2,
-        portionTypeId: 1,
-        portionPrices: [0, 15],
+        categoryId: '2',
+        portionTypeId: '1',
+        portions: [
+          {
+            id: '1',
+            name: 'Portion 1',
+            price: 10,
+          },
+          {
+            id: '2',
+            name: 'Portion 2',
+            price: 15,
+          },
+        ],
       },
-      portionTypes: [{ id: 1, name: 'Única' }],
-      portions: [{ id: 1, name: 'Única' }],
+      portionTypes: [{ id: '1', name: 'Única' }],
+      portions: [{ id: '1', name: 'Única' }],
       onSave: jest.fn(),
-      onChangeCategory: (categoryId: number) => {
+      onChangeCategory: (categoryId: string) => {
         return;
       },
       onChangeName: (name: string) => {
@@ -185,10 +202,10 @@ describe('EditProductComponent tests', () => {
       onChangeDescription: (description: string) => {
         return;
       },
-      onChangePortionPrice: (id: number, price: number) => {
+      onChangePortionPrice: (id: string, price: number) => {
         return;
       },
-      onChangePortionType: (id: number) => {
+      onChangePortionType: (id: string) => {
         return;
       },
       onCancel: () => {
@@ -199,8 +216,6 @@ describe('EditProductComponent tests', () => {
     //Act
     render(<EditProductComponent {...props} />);
 
-    //Act
-    render(<EditProductComponent {...props} />);
     const saveButton = screen.getAllByRole('button')[2];
     userEvent.click(saveButton);
 
@@ -212,31 +227,31 @@ describe('EditProductComponent tests', () => {
     const props = {
       categories: [
         {
-          id: 1,
+          id: '1',
           name: 'Category I',
         },
         {
-          id: 2,
+          id: '2',
           name: 'Category II',
         },
         {
-          id: 3,
+          id: '3',
           name: 'Category III',
         },
       ],
       product: {
-        id: 12,
+        id: '12',
         name: 'Test product',
         description: 'New description',
         visible: true,
-        categoryId: 2,
-        portionTypeId: 1,
-        portionPrices: [0, 15],
+        categoryId: '2',
+        portionTypeId: '1',
+        portions: [{ id: '1', name: 'Única', price: 15 }],
       },
-      portionTypes: [{ id: 1, name: 'Única' }],
-      portions: [{ id: 1, name: 'Única' }],
+      portionTypes: [{ id: '1', name: 'Única' }],
+      portions: [{ id: '1', name: 'Única' }],
       onSave: jest.fn(),
-      onChangeCategory: (categoryId: number) => {
+      onChangeCategory: (categoryId: string) => {
         return;
       },
       onChangeName: (name: string) => {
@@ -245,10 +260,10 @@ describe('EditProductComponent tests', () => {
       onChangeDescription: (description: string) => {
         return;
       },
-      onChangePortionPrice: (id: number, price: number) => {
+      onChangePortionPrice: (id: string, price: number) => {
         return;
       },
-      onChangePortionType: (id: number) => {
+      onChangePortionType: (id: string) => {
         return;
       },
       onCancel: jest.fn(),

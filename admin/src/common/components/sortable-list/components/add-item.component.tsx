@@ -2,25 +2,29 @@ import { IconButton } from '@material-ui/core';
 import { AddCircleOutlined } from '@material-ui/icons';
 import React from 'react';
 import { ItemCardComponent } from './item-card.component';
+import { ItemId, ItemValue } from '../list-item.vm';
 
-interface AddItemComponentProps {
+interface AddItemComponentProps<ItemId, ItemValue> {
+  id?: ItemId;
+  value?: ItemValue;
   onCancel: () => void;
-  onSave: (name: string, id?: number) => void;
+  onSave: (value: ItemValue, id?: ItemId) => void;
   onAdd: () => void;
-  isAdding: boolean;
+  adding: boolean;
 }
 
-export const AddItemComponent: React.FunctionComponent<AddItemComponentProps> = (props) => {
-  const { onCancel, onSave, onAdd, isAdding } = props;
+export const AddItemComponent: React.FunctionComponent<AddItemComponentProps<ItemId, ItemValue>> = (
+  props,
+) => {
+  const { id, value, onCancel, onSave, onAdd, adding } = props;
   return (
     <>
-      <IconButton aria-label='Añadir' onClick={onAdd} disabled={isAdding}>
+      <IconButton aria-label='Añadir' onClick={onAdd} disabled={adding}>
         <AddCircleOutlined fontSize='large' />
       </IconButton>
-      {isAdding && (
+      {adding && (
         <ItemCardComponent
-          id={0}
-          value={''}
+          value=''
           edit={true}
           onEdit={() => {
             return;

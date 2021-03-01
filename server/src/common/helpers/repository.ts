@@ -6,11 +6,11 @@ export interface Entity {
 
 export interface MockRepository<Entity> {
   getCollection: () => Entity[];
-  saveItem: (item: Entity) => Entity;
+  saveItem: (item: Entity) => void;
   getItemById: (id: any) => Entity;
   getItemByPropValue: (propName: string, value: any) => Entity;
-  setItems: (items: Entity[]) => Entity[];
-  deleteItem: (id: any) => Entity[];
+  setItems: (items: Entity[]) => void;
+  deleteItem: (id: any) => void;
 }
 
 export function createMockRepository<T extends Entity>(
@@ -30,7 +30,7 @@ export function createMockRepository<T extends Entity>(
   const getItemByPropValue = (propName: string, value: any) =>
     collection.find((o) => o[propName] == value);
 
-  const saveItem = (item: T): T => {
+  const saveItem = (item: T): void => {
     if (!item) throw 'item cannot be null or undefined';
     if (!!item._id && !!getItemById(item._id)) {
       collection = produce(collection, (newCollection) => {
@@ -43,29 +43,21 @@ export function createMockRepository<T extends Entity>(
         newCollection.push({ ...item });
       });
     }
-
-    return getItemById(item._id);
   };
 
-  const setItems = (items: T[]): T[] => {
+  const setItems = (items: T[]): void => {
     if (!items) items = [];
     collection = produce(
       collection,
       (newCollection) => (newCollection = [...items])
     );
-    return collection;
   };
 
-  const deleteItem = (id: any): T[] => {
+  const deleteItem = (id: any): void => {
     if (!id) throw 'id cannot be empty';
     collection = produce(collection, (newCollection) => {
-      newCollection.splice(
-        newCollection.indexOf((i) => i._id == id),
-        1
-      );
-      return newCollection;
+      return newCollection.filter(i => i._id !== id);
     });
-    return collection;
   };
 
   return {

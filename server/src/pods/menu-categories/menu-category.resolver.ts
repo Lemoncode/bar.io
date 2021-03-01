@@ -16,20 +16,21 @@ interface MenuCategoryResolver {
     getProductById: GraphQLResolver<Product, { id: string }>;
   };
   Mutation: {
-    saveMenuCategory: GraphQLResolver<
-      MenuCategory,
-      { menuCategory: MenuCategory }
+    saveMenuCategory: GraphQLResolver<boolean, { menuCategory: MenuCategory }>;
+    saveMenuCategories: GraphQLResolver<
+      boolean,
+      { menuCategories: MenuCategory[] }
     >;
     saveProduct: GraphQLResolver<
-      Product,
+      boolean,
       { product: Product; categoryId?: string }
     >;
     saveProducts: GraphQLResolver<
-      Array<Product>,
+      boolean,
       { categoryId: string; products: Array<Product> }
     >;
-    deleteMenuCategory: GraphQLResolver<Array<MenuCategory>, { id: string }>;
-    deleteProduct: GraphQLResolver<Array<Product>, { id: string }>;
+    deleteMenuCategory: GraphQLResolver<boolean, { id: string }>;
+    deleteProduct: GraphQLResolver<boolean, { id: string }>;
   };
 }
 
@@ -69,45 +70,52 @@ export const menuCategoryResolver: MenuCategoryResolver = {
       parent,
       { menuCategory },
       context
-    ): Promise<MenuCategory> =>
-      mapFromMenuCategoryModelToApiModel(
-        await menuCategoryRepository.saveMenuCategory(
-          mapFromMenuCategoryApiModelToModel(menuCategory)
-        )
-      ),
+    ): Promise<boolean> => {
+      await menuCategoryRepository.saveMenuCategory(
+        mapFromMenuCategoryApiModelToModel(menuCategory)
+      );
+
+      return true;
+    },
+    saveMenuCategories: async (
+      parent,
+      { menuCategories },
+      context
+    ): Promise<boolean> => {
+      await menuCategoryRepository.saveMenuCategories(
+        menuCategories?.map((mc) => mapFromMenuCategoryApiModelToModel(mc))
+      );
+      return true;
+    },
     saveProduct: async (
       parent,
       { product, categoryId },
       context
-    ): Promise<Product> =>
-      mapFromProductModelToApiModel(
-        await menuCategoryRepository.saveProduct(
-          mapFromProductApiModelToModel(product),
-          categoryId
-        )
-      ),
+    ): Promise<boolean> => {
+      await menuCategoryRepository.saveProduct(
+        mapFromProductApiModelToModel(product),
+        categoryId
+      );
+      return true;
+    },
     saveProducts: async (
       parent,
       { categoryId, products },
       context
-    ): Promise<Array<Product>> =>
-      (
-        await menuCategoryRepository.saveProducts(
-          categoryId,
-          products.map((p) => mapFromProductApiModelToModel(p))
-        )
-      )?.map((p) => mapFromProductModelToApiModel(p)) ?? [],
-    deleteMenuCategory: async (
-      parent,
-      { id },
-      context
-    ): Promise<Array<MenuCategory>> =>
-      (await menuCategoryRepository.deleteMenuCategory(id))?.map((mc) =>
-        mapFromMenuCategoryModelToApiModel(mc)
-      ) ?? [],
-    deleteProduct: async (parent, { id }, context): Promise<Array<Product>> =>
-      (await menuCategoryRepository.deleteProduct(id))?.map((p) =>
-        mapFromProductModelToApiModel(p)
-      ) ?? [],
+    ): Promise<boolean> => {
+      await menuCategoryRepository.saveProducts(
+        categoryId,
+        products.map((p) => mapFromProductApiModelToModel(p))
+      );
+      return true;
+    },
+    deleteMenuCategory: async (parent, { id }, context): Promise<boolean> => {
+      await menuCategoryRepository.deleteMenuCategory(id);
+      return true;
+    },
+    deleteProduct: async (parent, { id }, context): Promise<boolean> => {
+      await menuCategoryRepository.deleteProduct(id);
+      return true;
+    },
   },
 };

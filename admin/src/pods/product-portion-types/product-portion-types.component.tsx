@@ -1,27 +1,23 @@
 import React from 'react';
-//Material ui
 import { Card, CardContent, CardHeader } from '@material-ui/core';
-
-//Components
 import { SortableListComponent } from 'common/components/sortable-list';
 import { ListItem } from 'common/components/sortable-list';
-
-//CSS
-import * as classes from './product-portion-list.styles';
+import * as classes from './product-portion-types.styles';
 
 interface Props {
-  listItem: ListItem[];
-  editID: number | false;
-  onSave: (value: string, id: number) => void;
-  onEdit: (id: number) => void;
-  onDelete: (id: number) => void;
+  items: ListItem<string>[];
+  editItemId: string;
+  adding: boolean;
+  onSave: (value: string, id?: string) => void;
+  onEdit: (id: string) => void;
+  onDelete: (id: string) => void;
   onReorder: (start: number, end: number) => void;
   onCancel: () => void;
   onAdd: () => void;
 }
 
-export const ProductPortionListComponent: React.FunctionComponent<Props> = (props) => {
-  const { listItem, editID, onSave, onEdit, onDelete, onReorder, onCancel, onAdd } = props;
+export const ProductPortionTypesComponent: React.FunctionComponent<Props> = (props) => {
+  const { items, editItemId, adding, onSave, onEdit, onDelete, onReorder, onCancel, onAdd } = props;
   return (
     <>
       <div className={classes.container}>
@@ -29,9 +25,10 @@ export const ProductPortionListComponent: React.FunctionComponent<Props> = (prop
           <CardHeader component='h1' title='Raciones' />
           <CardContent>
             <SortableListComponent
-              items={listItem}
+              adding={adding}
+              items={items}
               itemTypeName='raciones'
-              editItemId={editID}
+              editItemId={editItemId}
               onSave={onSave}
               onEdit={onEdit}
               onDelete={onDelete}

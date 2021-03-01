@@ -1,13 +1,13 @@
 import { Product } from './product.model';
 
 export interface MenuCategory {
-  id: number;
+  id: string;
   name: string;
   products: Array<Product>;
 }
 
 export const createEmptyMenuCategory = (): MenuCategory => ({
-  id: 0,
+  id: '',
   name: '',
   products: [],
 });

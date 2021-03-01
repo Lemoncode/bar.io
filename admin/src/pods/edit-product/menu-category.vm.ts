@@ -1,4 +1,4 @@
 export interface MenuCategory {
-  id: number;
+  id: string;
   name: string;
 }

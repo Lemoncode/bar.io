@@ -9,8 +9,6 @@ const productSchema = new Schema({
   name: {
     type: Schema.Types.String,
     required: true,
-    index: true,
-    unique: true,
   },
   visible: { type: Schema.Types.Boolean, required: true },
   description: { type: Schema.Types.String },

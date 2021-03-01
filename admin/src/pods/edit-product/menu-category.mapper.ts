@@ -12,6 +12,6 @@ export const mapMenuCategoryApiModelToViewModel = (
   !!category ? { id: category.id, name: category.name } : createEmptyMenuCategoryVm();
 
 export const createEmptyMenuCategoryVm = (): viewModel.MenuCategory => ({
-  id: 0,
+  id: '',
   name: '',
 });

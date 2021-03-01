@@ -1,32 +1,32 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { SortableListComponent } from './sortable-list.component';
+import { ItemId, ItemValue } from './list-item.vm';
 
 describe('SortableListComponent test', () => {
   it('should show the add button and a list of item cards when passed a valid list', () => {
     // Arrange
     const props = {
       items: [
-        { id: 1, value: 'Entrantes' },
-        { id: 2, value: 'Primeros' },
-        { id: 3, value: 'Segundos' },
-        { id: 4, value: 'Postres' },
-        { id: 5, value: 'Bebidas' },
+        { id: '1', value: 'Entrantes' },
+        { id: '2', value: 'Primeros' },
+        { id: '3', value: 'Segundos' },
+        { id: '4', value: 'Postres' },
+        { id: '5', value: 'Bebidas' },
       ],
-      editItemId: false,
       onAdd: () => {
         return;
       },
       onCancel: () => {
         return;
       },
-      onEdit: (id: number) => {
+      onEdit: (id: ItemId) => {
         return;
       },
-      onDelete: (id: number) => {
+      onDelete: (id: ItemId) => {
         return;
       },
-      onSave: (value: string, id?: number) => {
+      onSave: (value: ItemValue, id?: ItemId) => {
         return;
       },
       onReorder: (startIndex: number, endIndex: number) => {
@@ -48,20 +48,19 @@ describe('SortableListComponent test', () => {
     // Arrange
     const props = {
       items: undefined,
-      editItemId: false,
       onAdd: () => {
         return;
       },
       onCancel: () => {
         return;
       },
-      onEdit: (id: number) => {
+      onEdit: (id: ItemId) => {
         return;
       },
-      onDelete: (id: number) => {
+      onDelete: (id: ItemId) => {
         return;
       },
-      onSave: (value: string, id?: number) => {
+      onSave: (value: ItemValue, id?: ItemId) => {
         return;
       },
       onReorder: (startIndex: number, endIndex: number) => {
@@ -82,20 +81,19 @@ describe('SortableListComponent test', () => {
     // Arrange
     const props = {
       items: undefined,
-      editItemId: false,
       onAdd: () => {
         return;
       },
       onCancel: () => {
         return;
       },
-      onEdit: (id: number) => {
+      onEdit: (id: ItemId) => {
         return;
       },
-      onDelete: (id: number) => {
+      onDelete: (id: ItemId) => {
         return;
       },
-      onSave: (value: string, id?: number) => {
+      onSave: (value: ItemValue, id?: ItemId) => {
         return;
       },
       onReorder: (startIndex: number, endIndex: number) => {
@@ -116,20 +114,19 @@ describe('SortableListComponent test', () => {
     // Arrange
     const props = {
       items: undefined,
-      editItemId: false,
       onAdd: () => {
         return;
       },
       onCancel: () => {
         return;
       },
-      onEdit: (id: number) => {
+      onEdit: (id: ItemId) => {
         return;
       },
-      onDelete: (id: number) => {
+      onDelete: (id: ItemId) => {
         return;
       },
-      onSave: (value: string, id?: number) => {
+      onSave: (value: ItemValue, id?: ItemId) => {
         return;
       },
       onReorder: (startIndex: number, endIndex: number) => {

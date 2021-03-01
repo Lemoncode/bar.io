@@ -4,8 +4,8 @@ import { createEmptyListItem } from 'common/components/sortable-list/list-item.v
 
 export const mapProductPortionsToListItems = (
   productPortions: Array<ProductPortion>,
-): Array<ListItem> =>
+): Array<ListItem<string>> =>
   !!productPortions ? productPortions.map((ps) => mapProductPortionToListItem(ps)) : [];
 
-export const mapProductPortionToListItem = (productPortion: ProductPortion): ListItem =>
+export const mapProductPortionToListItem = (productPortion: ProductPortion): ListItem<string> =>
   !!productPortion ? { id: productPortion.id, value: productPortion.name } : createEmptyListItem();

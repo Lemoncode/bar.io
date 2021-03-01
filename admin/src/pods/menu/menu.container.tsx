@@ -32,7 +32,7 @@ export const MenuContainer: React.FunctionComponent = () => {
       },
       {
         title: 'Raciones',
-        linkTo: routes.productPortionList,
+        linkTo: routes.productPortionTypes,
         icon: LocalOfferIcon,
       },
       {

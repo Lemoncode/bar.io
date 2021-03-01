@@ -12,19 +12,19 @@ describe('MenuListComponentTest', () => {
           name: 'Entrantes',
           products: [
             {
-              id: 1,
+              id: '1',
               name: 'Chorizo criollo',
               description: 'Muy picante',
               portions: [{ name: 'Única', price: '5,00 €' }],
             },
             {
-              id: 2,
+              id: '2',
               name: 'Queso provolone',
               description: '',
               portions: [{ name: 'Única', price: '5,00 €' }],
             },
             {
-              id: 3,
+              id: '3',
               name: 'Jamón ibérico',
               description: '',
               portions: [{ name: 'Única', price: '5,00 €' }],
@@ -35,19 +35,19 @@ describe('MenuListComponentTest', () => {
           name: 'Platos Principales',
           products: [
             {
-              id: 12,
+              id: '12',
               name: 'Flamenquín cordobés',
               description: 'Casero con queso',
               portions: [{ name: 'Única', price: '5,00 €' }],
             },
             {
-              id: 13,
+              id: '13',
               name: 'Carrillada ibérica al Predro Ximénez',
               description: '',
               portions: [{ name: 'Única', price: '5,00 €' }],
             },
             {
-              id: 14,
+              id: '14',
               name: 'Huevos rotos con chorizo y patatas fritas',
               description: '',
               portions: [{ name: 'Única', price: '5,00 €' }],
@@ -58,13 +58,13 @@ describe('MenuListComponentTest', () => {
           name: 'Postres',
           products: [
             {
-              id: 21,
+              id: '21',
               name: 'Torrijas',
               description: '',
               portions: [{ name: 'Única', price: '5,00 €' }],
             },
             {
-              id: 22,
+              id: '22',
               name: 'Coulant de chocolate negro con helado de vainilla',
               description: '',
               portions: [{ name: 'Única', price: '5,00 €' }],
@@ -75,19 +75,19 @@ describe('MenuListComponentTest', () => {
           name: 'Bebidas',
           products: [
             {
-              id: 24,
+              id: '24',
               name: 'Refrescos',
               description: '',
               portions: [{ name: 'Única', price: '5,00 €' }],
             },
             {
-              id: 25,
+              id: '25',
               name: 'Cerveza (caña)',
               description: '',
               portions: [{ name: 'Única', price: '5,00 €' }],
             },
             {
-              id: 26,
+              id: '26',
               name: 'Cerveza (Jarra)',
               description: '',
               portions: [{ name: 'Única', price: '5,00 €' }],

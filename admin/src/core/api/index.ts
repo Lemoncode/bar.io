@@ -1,4 +1,2 @@
-export * from './bar-io.api';
-export * from './menu-categories.model';
-export * from './product.model';
-export * from './product-portion.model';
+export * from './menu-categories';
+export * from './product-portions';

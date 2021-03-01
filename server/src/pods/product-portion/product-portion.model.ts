@@ -1,10 +1,10 @@
 export interface ProductPortionType {
-  id: any;
+  id: string;
   name: string;
   portions: Array<ProductPortion>;
 }
 
 export interface ProductPortion {
-  id: any;
+  id: string;
   name: string;
 }

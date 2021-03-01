@@ -1,9 +1,10 @@
 export interface ProductPortionType {
-  id: number;
+  id: string;
   name: string;
 }
 
 export interface ProductPortion {
-  id: number;
+  id: string;
   name: string;
+  price: number;
 }

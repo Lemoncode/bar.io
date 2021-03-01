@@ -16,14 +16,16 @@ export const getProductPortionTypeById = async (
 
 export const saveProductPortionType = async (
   productPortionType: ProductPortionType
-): Promise<ProductPortionType> => {
-  return productPortionTypeRepository.saveItem(productPortionType);
-}
+): Promise<void> => productPortionTypeRepository.saveItem(productPortionType);
+
+export const saveProductPortionTypes = async (
+  productPortionTypes: Array<ProductPortionType>
+): Promise<void> => productPortionTypeRepository.setItems(productPortionTypes);
 
 export const saveProductPortion = async (
   productPortion: ProductPortion,
   productPortionTypeId?: string
-): Promise<ProductPortion> => {
+): Promise<void> => {
   let productPortionType;
   if (!!productPortionTypeId) {
     productPortionType = productPortionTypeRepository.getItemById(
@@ -40,33 +42,25 @@ export const saveProductPortion = async (
       productPortionType.portions
     );
     const savedPortion = productPortionRepository.saveItem(productPortion);
-    const result = productPortionTypeRepository.saveItem({
+    productPortionTypeRepository.saveItem({
       ...productPortionType,
       portions: productPortionRepository.getCollection(),
     });
-    return !!result ? savedPortion : null;
   }
-
-  return null;
 };
 
-export const deleteProductPortionType = async (id: string): Promise<Array<ProductPortionType>> =>
+export const deleteProductPortionType = async (id: string): Promise<void> =>
   productPortionTypeRepository.deleteItem(id);
 
-export const deleteProductPortion = async (
-  id: string
-): Promise<Array<ProductPortion>> => {
+export const deleteProductPortion = async (id: string): Promise<void> => {
   if (!id) throw 'id cannot be empty';
   const types = await getProductPortionTypes();
   const type = types.find((t) => t.portions.some((p) => p._id === id));
 
   if (!!type) {
-    const updatedType = productPortionTypeRepository.saveItem({
+    productPortionTypeRepository.saveItem({
       ...type,
       portions: type.portions.filter((p) => p._id !== id),
     });
-    return !!updatedType ? [...updatedType.portions] : [];
   }
-
-  return [];
 };

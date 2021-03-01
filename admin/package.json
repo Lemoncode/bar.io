@@ -61,6 +61,8 @@
     "@material-ui/icons": "^4.11.2",
     "emotion": "^10.0.27",
     "formik": "^2.2.6",
+    "graphql": "^15.5.0",
+    "graphql-request": "^3.4.0",
     "http-server": "^0.12.3",
     "immer": "^8.0.0",
     "jspdf": "^2.3.0",

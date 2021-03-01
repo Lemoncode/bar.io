@@ -4,27 +4,30 @@ import { AddItemComponent, ItemCardComponent } from './components';
 import { ListItem as Item } from './list-item.vm';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import * as classes from './sortable-list.styles';
+import { ItemId, ItemValue } from './list-item.vm';
 
-interface SortableListComponentProps {
-  items: Array<Item>;
+interface SortableListComponentProps<ItemId> {
+  items: Array<Item<ItemId>>;
   itemTypeName?: string;
-  editItemId?: number | boolean;
-  onDelete: (id: number) => void;
-  onEdit: (id: number) => void;
-  onSave?: (value: string, id?: number) => void;
+  editItemId?: ItemId;
+  adding?: boolean;
+  onDelete: (id: ItemId) => void;
+  onEdit: (id: ItemId) => void;
+  onSave?: (value: ItemValue, id?: ItemId) => void;
   onAdd: () => void;
   onCancel?: () => void;
-  onChangeVisibility?: (id: number) => void;
+  onChangeVisibility?: (id: ItemId) => void;
   onReorder: (startIndex: number, endIndex: number) => void;
 }
 
-export const SortableListComponent: React.FunctionComponent<SortableListComponentProps> = (
+export const SortableListComponent: React.FunctionComponent<SortableListComponentProps<ItemId>> = (
   props,
 ) => {
   const {
     items,
     itemTypeName,
     editItemId,
+    adding,
     onSave,
     onCancel,
     onEdit,
@@ -38,16 +41,10 @@ export const SortableListComponent: React.FunctionComponent<SortableListComponen
     if (!!result.destination) onReorder(result.source.index, result.destination.index);
     else return;
   };
-
   return (
     <>
-      <AddItemComponent
-        isAdding={editItemId === 0}
-        onAdd={onAdd}
-        onSave={onSave}
-        onCancel={onCancel}
-      />
-      {(!items || items.length === 0) && editItemId !== 0 && (
+      <AddItemComponent adding={adding} onAdd={onAdd} onSave={onSave} onCancel={onCancel} />
+      {(!items || items.length === 0) && !adding && !editItemId && (
         <Typography align='center' component='span'>{`No existen ${
           itemTypeName ?? 'elementos'
         }`}</Typography>
@@ -60,7 +57,7 @@ export const SortableListComponent: React.FunctionComponent<SortableListComponen
                 <List>
                   {items.map((i, index) => (
                     <Draggable
-                      isDragDisabled={editItemId !== false && editItemId !== undefined}
+                      isDragDisabled={!!editItemId}
                       key={i.id}
                       draggableId={`${i.id}`}
                       index={index}>

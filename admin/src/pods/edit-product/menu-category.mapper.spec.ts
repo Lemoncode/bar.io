@@ -7,28 +7,28 @@ describe('Menu category mappers tests', () => {
     //Arrange
     const models: Array<apiModel.MenuCategory> = [
       {
-        id: 10,
+        id: '10',
         name: 'Test category I',
         products: [
           {
-            id: 21,
+            id: '21',
             name: 'Test product I',
             description: 'Description 1',
-            portionTypeId: 0,
+            portionTypeId: '',
             portions: [],
             visible: true,
           },
         ],
       },
       {
-        id: 11,
+        id: '11',
         name: 'Test category II',
         products: [
           {
-            id: 25,
+            id: '25',
             name: 'Test product II',
             description: 'Description 2',
-            portionTypeId: 0,
+            portionTypeId: '',
             portions: [],
             visible: false,
           },
@@ -42,11 +42,11 @@ describe('Menu category mappers tests', () => {
     //Assert
     const expectedResult: Array<viewModel.MenuCategory> = [
       {
-        id: 10,
+        id: '10',
         name: 'Test category I',
       },
       {
-        id: 11,
+        id: '11',
         name: 'Test category II',
       },
     ];

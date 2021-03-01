@@ -1,4 +1,4 @@
-import * as apiModel from 'core/api/product-portion.model';
+import * as apiModel from 'core/api/product-portions/product-portions.model';
 import * as viewModel from './product-portion.vm';
 
 export const mapProductPortionApiModelsToViewModels = (
@@ -8,7 +8,7 @@ export const mapProductPortionApiModelsToViewModels = (
 
 const mapProductPortionApiModelToViewModel = (
   productPortion: apiModel.ProductPortion,
-): viewModel.ProductPortion => ({ ...productPortion });
+): viewModel.ProductPortion => ({ ...productPortion, price: 0 });
 
 export const mapProductPortionTypeApiModelsToViewModels = (
   productPortionTypes: Array<apiModel.ProductPortionType>,

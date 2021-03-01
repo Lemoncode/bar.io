@@ -9,6 +9,7 @@ export const TextFieldComponent: React.FunctionComponent<TextFieldProps> = (prop
   return (
     <MuiTextField
       {...props}
+      inputProps={props.inputProps}
       name={props.name ?? field.name}
       onChange={props.onChange ?? field.onChange}
       onKeyUp={props.onKeyUp}

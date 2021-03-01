@@ -57,10 +57,11 @@ export const menuCategoryTypeDefs = gql`
   }
 
   extend type Mutation {
-    saveMenuCategory(menuCategory: MenuCategoryInput!): MenuCategory
-    saveProduct(product: ProductInput!, categoryId: ID): Product
-    saveProducts(categoryId: ID!, products: [ProductInput]!): [Product]
-    deleteMenuCategory(categoryId: ID!): [MenuCategory]
-    deleteProduct(id: ID!): [Product]
+    saveMenuCategories(menuCategories: [MenuCategoryInput]): Boolean
+    saveMenuCategory(menuCategory: MenuCategoryInput!): Boolean
+    saveProduct(product: ProductInput!, categoryId: ID): Boolean
+    saveProducts(categoryId: ID!, products: [ProductInput]!): Boolean
+    deleteMenuCategory(id: ID!): Boolean
+    deleteProduct(id: ID!): Boolean
   }
 `;

@@ -3,13 +3,13 @@ import React from 'react';
 import { Card, CardContent, CardHeader, InputLabel, MenuItem, Select } from '@material-ui/core';
 
 interface ProductListComponentProps {
-  selectedCategoryId: number;
-  categories: Array<ListItem>;
-  products: Array<ListItem>;
-  onChangeCategory: (id: number) => void;
-  onEditProduct: (id: number) => void;
-  onDeleteProduct: (id: number) => void;
-  onChangeProductVisibility: (id: number) => void;
+  selectedCategoryId: string;
+  categories: Array<ListItem<string>>;
+  products: Array<ListItem<string>>;
+  onChangeCategory: (id: string) => void;
+  onEditProduct: (id: string) => void;
+  onDeleteProduct: (id: string) => void;
+  onChangeProductVisibility: (id: string) => void;
   onReorderProducts: (startIndex: number, endIndex: number) => void;
   onAddProduct: () => void;
   onCancelProductEdit: () => void;
@@ -28,7 +28,7 @@ export const ProductListComponent: React.FunctionComponent<ProductListComponentP
     onAddProduct,
     onCancelProductEdit,
   } = props;
-  const handleChangeCategory = (e: React.ChangeEvent<{ value: number }>) =>
+  const handleChangeCategory = (e: React.ChangeEvent<{ value: string }>) =>
     onChangeCategory(e.target.value);
 
   return (

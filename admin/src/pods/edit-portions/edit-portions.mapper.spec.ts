@@ -6,15 +6,15 @@ describe('Categories List mapper tests', () => {
   it('should map to the expected item list when passing valid product portions', () => {
     // Arrange
     const productsPortions: Array<ProductPortion> = [
-      { id: 1, name: 'Tapa' },
-      { id: 2, name: 'Media' },
-      { id: 3, name: 'Ración' },
+      { id: '1', name: 'Tapa' },
+      { id: '2', name: 'Media' },
+      { id: '3', name: 'Ración' },
     ];
 
-    const expectedListItems: Array<ListItem> = [
-      { id: 1, value: 'Tapa' },
-      { id: 2, value: 'Media' },
-      { id: 3, value: 'Ración' },
+    const expectedListItems: Array<ListItem<string>> = [
+      { id: '1', value: 'Tapa' },
+      { id: '2', value: 'Media' },
+      { id: '3', value: 'Ración' },
     ];
 
     // Act

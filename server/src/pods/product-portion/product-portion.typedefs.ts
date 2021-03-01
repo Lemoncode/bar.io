@@ -29,9 +29,10 @@ export const productPortionTypeTypeDefs = gql`
   }
 
   extend type Mutation {
-    saveProductPortionType(productPortionType: ProductPortionTypeInput!): ProductPortionType
-    saveProductPortion(productPortion: ProductPortionInput!, productPortionTypeId: ID): ProductPortion    
-    deleteProductPortionType(id: ID!): [ProductPortionType]
-    deleteProductPortion(id: ID!): [ProductPortion]
+    saveProductPortionType(productPortionType: ProductPortionTypeInput!): Boolean
+    saveProductPortionTypes(productPortionTypes: [ProductPortionTypeInput]!): Boolean
+    saveProductPortion(productPortion: ProductPortionInput!, productPortionTypeId: ID): Boolean    
+    deleteProductPortionType(id: ID!): Boolean
+    deleteProductPortion(id: ID!): Boolean
   }
 `;

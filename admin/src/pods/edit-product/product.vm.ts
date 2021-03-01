@@ -1,11 +1,17 @@
+
+
 export interface Product {
-  id: number;
-  categoryId: number;
+  id: string;
+  categoryId: string;
   name: string;
   description: string;
-  portionTypeId: number;
-  portionPrices: Array<number>;
+  portionTypeId: string;
+  portions: Array<Portion>;
   visible: boolean;
 }
 
-export const initPortionPrices = () => new Array<number>(20).fill(0);
+export interface Portion {
+  id: string;
+  price: number;
+  name: string;
+}
